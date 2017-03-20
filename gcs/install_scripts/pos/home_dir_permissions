@@ -1,0 +1,18 @@
+
+# Enforce /home/* directories security
+# set directories permissions to 0700 
+# set files permissions to 0600
+sed -i 's/^DIR_MODE=0755/DIR_MODE=0700/' /etc/adduser.conf
+
+find /etc/skel -type f -exec chmod 600 \{\} \;
+find /etc/skel -type d -exec chmod 700 \{\} \;
+
+# Add umask command to /etc/profile
+# because sometimes the default UMASK value is not used for
+# PAM logged users
+NLINES=`grep umask /etc/profile | wc -l`
+if [ $NLINES -eq 0 ]
+then
+	# Append a line with umask to /etc/profile
+	echo "umask 077" >> /etc/profile
+fi

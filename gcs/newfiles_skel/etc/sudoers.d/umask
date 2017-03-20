@@ -1,0 +1,3 @@
+# Set umask for sudo commands
+Defaults umask_override
+Defaults umask = 0022
