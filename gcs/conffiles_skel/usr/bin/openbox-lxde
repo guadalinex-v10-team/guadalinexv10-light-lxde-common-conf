@@ -1,2 +1,9 @@
 #!/bin/bash
+
+if [ ! -f ~/.config/openbox/lxde-rc.xml ]; then
+    # Create initial configuration file
+	mkdir -p ~/.config/openbox
+	cp /etc/xdg/openbox/LXDE/rc.xml ~/.config/openbox/lxde-rc.xml
+fi
+
 exec openbox --config-file ~/.config/openbox/lxde-rc.xml $@
