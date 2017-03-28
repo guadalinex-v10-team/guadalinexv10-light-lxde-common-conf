@@ -6,3 +6,6 @@ lxde-common
 
 # Fix notification autostart in /etc/xdg/autostart/notification-daemon-autostart.desktop
 notification-daemon
+
+# Change xfce4-power-manager default action on power button to nothing
+xfce4-power-manager
