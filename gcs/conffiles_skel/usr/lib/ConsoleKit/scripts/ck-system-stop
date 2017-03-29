@@ -2,6 +2,7 @@
 
 # Get the user that is running openbox
 USER=`ps -ef | grep openbox | grep config | awk -F" " '{print $1}' | tail -n 1`
+USER=`grep ${USER::-1} /etc/passwd | awk -F":" '{print $1}'`
 #echo USER=$USER > /tmp/salida.txt 
 
 # Get dbus environment variable
@@ -12,7 +13,7 @@ then
 fi
 
 # Get LXSESSION_PID
-_LXSESSION_PID=`ps -u usuario | grep x-session-manag | awk -F" " '{print $1}'`
+_LXSESSION_PID=`ps -u $USER | grep x-session-manag | awk -F" " '{print $1}'`
 
 # Export environment variables
 export _LXSESSION_PID
