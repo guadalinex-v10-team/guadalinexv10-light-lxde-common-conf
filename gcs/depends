@@ -7,6 +7,9 @@ lxde-common
 # Fix notification autostart in /etc/xdg/autostart/notification-daemon-autostart.desktop
 notification-daemon
 
+# Hide gscriptor.desktop icon
+pcsc-tools
+
 # Set mate-power-manager
 mate-power-manager
 
