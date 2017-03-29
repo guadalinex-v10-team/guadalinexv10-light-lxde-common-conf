@@ -1,0 +1,28 @@
+#!/bin/sh
+
+# Get the user that is running openbox
+USER=`ps -ef | grep openbox | grep config | awk -F" " '{print $1}' | tail -n 1`
+#echo USER=$USER > /tmp/salida.txt 
+
+# Get dbus environment variable
+if [ -d "/home/$USER/.dbus/session-bus/" ]
+then
+	DBUSFILE=`ls -t /home/$USER/.dbus/session-bus/ | head -n 1`
+	#echo DBUSFILE=$DBUSFILE >> /tmp/salida.txt 
+fi
+
+# Get LXSESSION_PID
+_LXSESSION_PID=`ps -u usuario | grep x-session-manag | awk -F" " '{print $1}'`
+
+# Export environment variables
+export _LXSESSION_PID
+. /home/$USER/.dbus/session-bus/$DBUSFILE
+export DBUS_SESSION_BUS_ADDRESS
+export XAUTHORITY=/home/$USER/.Xauthority
+export DISPLAY=:0.0
+
+#/usr/bin/lxde-logout >> /tmp/salida.txt 2>&1
+/usr/bin/lxde-logout
+
+exit 0
+

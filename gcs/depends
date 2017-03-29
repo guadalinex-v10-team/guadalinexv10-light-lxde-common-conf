@@ -9,3 +9,10 @@ notification-daemon
 
 # Set mate-power-manager
 mate-power-manager
+
+# When the user press the shutdown button, mate-power-manager sends a signal to the SessionManager
+#  dbus-send --session --type=method_call --print-reply --dest="org.lxde.SessionManager" /org/lxde/SessionManager org.lxde.SessionManager.Shutdown
+# After that, org.lxde.SessionManager sends a signal to consolekit
+#  dbus-send --system --dest=org.freedesktop.ConsoleKit --type=method_call --print-reply --reply-timeout=2000  /org/freedesktop/ConsoleKit/Manager  org.freedesktop.ConsoleKit.Manager.Stop
+# So, mate-power-manager needs consolekit and the /usr/lib/ConsoleKit/scripts/ck-system-stop script needs to be patched to call lxde-logout
+consolekit
