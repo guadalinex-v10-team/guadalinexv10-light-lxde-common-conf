@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Get the user that is running openbox
 USER=`ps -ef | grep openbox | grep config | awk -F" " '{print $1}' | tail -n 1`
